@@ -1,0 +1,9 @@
+A version of the asteroids video game written in processing using Java mode. 
+The code is broken up into multiple files, freesteroids.pde contains the setup
+for the program and the main update loop.  The other files all contain
+classes for the different parts of the game, the asteroids.pde file has the 
+asteroid class, the laserBall.pde file has the laserBall class(the projectiles you fire),
+the spaceship.pde file has the code for the spaceship class.
+To run the program, simply open freestroids.pde file in the processing ide and 
+press run.
+Controls for the game are listed in the controls.txt file
