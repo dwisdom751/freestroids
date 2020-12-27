@@ -1,0 +1,6 @@
+w: uses the ship's thrusters
+a: rotates left slowly
+d: rotates right slowly
+k: rotates left quickly
+l: rotates right quickly
+spacebar: fires a shot

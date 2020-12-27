@@ -1,3 +1,4 @@
+//interface that allows all the game's different objects to be used in generic functions
 interface moveable {
   public double getXPos();
   public double getXVel();

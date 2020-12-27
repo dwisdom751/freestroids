@@ -25,6 +25,10 @@ int score;
 
 
 //move all of the asteroids
+//inputs:
+//inAsts: an array of all asteroids which have their move function applied to them
+//side effects:
+//inAsts' elements will have their posX and posY variables changed
 public void moveAllAsts(ArrayList<asteroid> inAsts)
 {
   for(int drawAll = 0; drawAll < inAsts.size(); drawAll++)
@@ -34,6 +38,10 @@ public void moveAllAsts(ArrayList<asteroid> inAsts)
 }
 
 //move all laser balls
+//input:
+//inLs: a HashMap of all laserBalls
+//side effects:
+//inLs' elements will have their posX and posY vairables changed
 public void moveLaserB(HashMap<Integer,laserBall> inLs)
 {
   Iterator<laserBall> it = inLs.values().iterator();
@@ -44,6 +52,13 @@ public void moveLaserB(HashMap<Integer,laserBall> inLs)
   }
 }
 
+//delete all unneeded laser balls
+//input: 
+//inLs: a HashMap of all the laser balls in the scene
+//inE: a HashMap of every moveable in the scene
+//side effects:
+//inLs: will have dead laser balls deleted from it
+//inE: will have dead laser balls deleted from it
 public void clearUpLaserBalls(HashMap<Integer,laserBall> inLs, HashMap<Integer, moveable> inE)
 {
   Iterator<Integer> it = new CopyOnWriteArrayList(inLs.keySet()).iterator();
@@ -62,6 +77,15 @@ public void clearUpLaserBalls(HashMap<Integer,laserBall> inLs, HashMap<Integer, 
   }  
 }
 
+//delete all unneeded asteroids
+//input: 
+//inAs: a HashMap of all the asteroids in the scene
+//inE: a HashMap of every moveable in the scene
+//side effects:
+//inAs: will have dead asteroids deleted from it
+//also, every dead asteroid will be replaced by two asteroids with less health in this hashmap
+//inE: will have dead asteroids deleted from it
+//also, every dead asteroid will be replaced by two asteroids with less health in this hashmap
 public void clearUpLaserAST(HashMap<Integer,asteroid> inAs, HashMap<Integer, moveable> inE)
 {
   Iterator<Integer> it = new CopyOnWriteArrayList(inAs.keySet()).iterator();
@@ -110,7 +134,12 @@ public void clearUpLaserAST(HashMap<Integer,asteroid> inAs, HashMap<Integer, mov
 }
 
 
-//collides the ship with the asteroids
+//collides everything with everything
+//input:
+//Objects: hashmap of every object in the scene
+//side effects:
+//Objects: every object that has a collison will call it's collison function
+//with the object it collided with as input
 public <T extends moveable> void collideMany(HashMap<Integer,moveable> Objects)
 {
   ArrayList<moveable> allObs = new ArrayList<moveable>(Objects.values());
@@ -136,7 +165,9 @@ public <T extends moveable> void collideMany(HashMap<Integer,moveable> Objects)
     }
   }
 }
-
+//draws everything in the scene
+//input: 
+//Objects: all objects in the scene
 public <T extends moveable> void drawMany(HashMap<Integer,moveable> Objects)
 {
   Iterator<Integer> it = Objects.keySet().iterator();
@@ -145,7 +176,11 @@ public <T extends moveable> void drawMany(HashMap<Integer,moveable> Objects)
     Objects.get(it.next()).drawSelf(1.0);
   }
 }
-
+//applies friction to a moveable
+//input:
+//target: the object which will have friction applied to it
+//side effects:
+//target: will have its velX and velY changed
 public <T extends moveable> void applyFric(T target)
 {
     if(target.getXVel() >= 0 )
@@ -186,7 +221,7 @@ public <T extends moveable> void applyFric(T target)
 
 
 
-
+//sets everything up
 void setup()
 {
   shotLimiter = 30;
@@ -216,7 +251,7 @@ void setup()
   
 }
 
-
+//update loop
 void draw()
 {
   if(shotLimiter > 0)
